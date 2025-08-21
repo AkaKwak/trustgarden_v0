@@ -1,9 +1,14 @@
+/* ===== CSS PRINCIPAL - SIGNAL GARDEN ===== */
+
+/* Import du système de couleurs amélioré */
 @import './styles/colors.css';
 
+/* Tailwind CSS */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* ===== CONFIGURATION TAILWIND ===== */
 @layer base {
   :root {
     --background: 210 40% 98%;
@@ -61,17 +66,126 @@
   }
 }
 
-/* Grille personnalisée pour PixelGarden */
-.grid-cols-16 {
-  grid-template-columns: repeat(16, minmax(0, 1fr));
+/* ===== CLASSES PERSONNALISÉES ===== */
+@layer components {
+  /* Grille personnalisée pour PixelGarden */
+  .grid-cols-16 {
+    grid-template-columns: repeat(16, minmax(0, 1fr));
+  }
+
+  /* Classes utilitaires pour les layouts */
+  .layout-main {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .layout-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .layout-grid {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Classes pour les conteneurs */
+  .container-grid {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: var(--spacing-md);
+  }
+
+  /* Classes pour les cartes */
+  .card {
+    background: var(--bg-primary);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* Classes pour les boutons */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: 1px solid transparent;
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    user-select: none;
+  }
+
+  .btn-primary {
+    background: var(--primary-500);
+    color: var(--text-inverse);
+    border-color: var(--primary-500);
+  }
+
+  .btn-primary:hover:not(:disabled) {
+    background: var(--primary-600);
+    border-color: var(--primary-600);
+  }
+
+  .btn-secondary {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    border-color: var(--border-light);
+  }
+
+  .btn-secondary:hover:not(:disabled) {
+    background: var(--bg-tertiary);
+    border-color: var(--border-medium);
+  }
 }
 
-/* Animations pour les pixels */
-@keyframes pixel-glow {
-  0%, 100% { box-shadow: 0 0 5px rgba(255, 255, 255, 0.3); }
-  50% { box-shadow: 0 0 15px rgba(255, 255, 255, 0.6); }
-}
+/* ===== UTILITAIRES RESPONSIVES ===== */
+@layer utilities {
+  /* Classes pour les animations */
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-in-out;
+  }
 
-.pixel-selected {
-  animation: pixel-glow 1.5s ease-in-out infinite;
+  .animate-slide-up {
+    animation: slideInUp 0.3s ease-out;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.3s ease-out;
+  }
+
+  /* Classes pour les transitions */
+  .transition-all {
+    transition: all 0.2s ease-in-out;
+  }
+
+  .transition-colors {
+    transition: color 0.2s ease-in-out, background-color 0.2s ease-in-out;
+  }
+
+  .transition-transform {
+    transition: transform 0.2s ease-in-out;
+  }
+
+  /* Classes pour les effets hover */
+  .hover-scale:hover {
+    transform: scale(1.05);
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .hover-glow:hover {
+    box-shadow: 0 0 20px rgba(14, 165, 233, 0.3);
+  }
 }

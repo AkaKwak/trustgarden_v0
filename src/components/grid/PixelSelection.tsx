@@ -1,3 +1,5 @@
+// ===== COMPOSANT DE SÉLECTION ÉLÉGANTE =====
+
 import { useEffect, useRef } from 'react'
 import { Rect } from 'react-konva'
 import Konva from 'konva'
@@ -15,27 +17,31 @@ export function PixelSelection({ x, y, size, isSelected }: PixelSelectionProps) 
 
   useEffect(() => {
     if (rectRef.current && isSelected) {
-      // Animation d'apparition
+      // Animation d'apparition élégante
       rectRef.current.to({
-        scaleX: SELECTION_CONFIG.dimensions.scale,
-        scaleY: SELECTION_CONFIG.dimensions.scale,
-        shadowBlur: SELECTION_CONFIG.dimensions.shadowBlur,
+        scaleX: SELECTION_CONFIG.states.selected.scale,
+        scaleY: SELECTION_CONFIG.states.selected.scale,
+        shadowBlur: SELECTION_CONFIG.states.selected.shadowBlur,
         duration: SELECTION_CONFIG.animations.duration.appear,
         easing: Konva.Easings[SELECTION_CONFIG.animations.easing.appear as keyof typeof Konva.Easings]
       })
 
-      // Animation de pulsation continue
+      // Animation de pulsation subtile simplifiée
       const pulseAnimation = () => {
         if (rectRef.current && isSelected) {
           rectRef.current.to({
             shadowBlur: SELECTION_CONFIG.animations.pulse.maxShadow,
-            duration: SELECTION_CONFIG.animations.duration.pulse,
+            scaleX: SELECTION_CONFIG.animations.pulse.maxScale,
+            scaleY: SELECTION_CONFIG.animations.pulse.maxScale,
+            duration: SELECTION_CONFIG.animations.duration.pulse / 2,
             easing: Konva.Easings[SELECTION_CONFIG.animations.easing.pulse as keyof typeof Konva.Easings],
             onFinish: () => {
               if (rectRef.current && isSelected) {
                 rectRef.current.to({
                   shadowBlur: SELECTION_CONFIG.animations.pulse.minShadow,
-                  duration: SELECTION_CONFIG.animations.duration.pulse,
+                  scaleX: SELECTION_CONFIG.animations.pulse.minScale,
+                  scaleY: SELECTION_CONFIG.animations.pulse.minScale,
+                  duration: SELECTION_CONFIG.animations.duration.pulse / 2,
                   easing: Konva.Easings[SELECTION_CONFIG.animations.easing.pulse as keyof typeof Konva.Easings],
                   onFinish: pulseAnimation
                 })
@@ -45,9 +51,10 @@ export function PixelSelection({ x, y, size, isSelected }: PixelSelectionProps) 
         }
       }
       
-      pulseAnimation()
+      // Démarrer l'animation de pulsation
+      setTimeout(pulseAnimation, SELECTION_CONFIG.animations.duration.appear * 1000)
     } else if (rectRef.current && !isSelected) {
-      // Animation de disparition
+      // Animation de disparition fluide
       rectRef.current.to({
         scaleX: 1,
         scaleY: 1,
@@ -63,14 +70,14 @@ export function PixelSelection({ x, y, size, isSelected }: PixelSelectionProps) 
   return (
     <Rect
       ref={rectRef}
-      x={x * size - 2}
-      y={y * size - 2}
-      width={size + 4}
-      height={size + 4}
+      x={x * size - SELECTION_CONFIG.dimensions.offset}
+      y={y * size - SELECTION_CONFIG.dimensions.offset}
+      width={size + (SELECTION_CONFIG.dimensions.offset * 2)}
+      height={size + (SELECTION_CONFIG.dimensions.offset * 2)}
       fill="transparent"
       stroke={SELECTION_CONFIG.colors.primary}
-      strokeWidth={SELECTION_CONFIG.dimensions.strokeWidth}
-      shadowBlur={SELECTION_CONFIG.dimensions.shadowBlur}
+      strokeWidth={SELECTION_CONFIG.states.selected.strokeWidth}
+      shadowBlur={SELECTION_CONFIG.states.selected.shadowBlur}
       shadowColor={SELECTION_CONFIG.colors.shadow}
       shadowOpacity={SELECTION_CONFIG.dimensions.shadowOpacity}
       cornerRadius={SELECTION_CONFIG.dimensions.cornerRadius}

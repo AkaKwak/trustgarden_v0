@@ -1,7 +1,7 @@
-/* ===== SYSTÈME DE COULEURS MAÎTRE ===== */
+/* ===== SYSTÈME DE COULEURS MAÎTRE - SIGNAL GARDEN ===== */
 
 :root {
-  /* Couleurs primaires - Signal Garden */
+  /* ===== COULEURS PRIMAIRES - SIGNAL GARDEN ===== */
   --primary-50: #f0f9ff;
   --primary-100: #e0f2fe;
   --primary-200: #bae6fd;
@@ -13,7 +13,7 @@
   --primary-800: #075985;
   --primary-900: #0c4a6e;
 
-  /* Couleurs secondaires - Nature */
+  /* ===== COULEURS SECONDAIRES - NATURE ===== */
   --nature-green-50: #17ba48;
   --nature-green-100: #0ec34e;
   --nature-green-200: #bbf7d0;
@@ -25,7 +25,7 @@
   --nature-green-800: #166534;
   --nature-green-900: #14532d;
 
-  /* Couleurs d'accent - Éléments naturels */
+  /* ===== COULEURS D'ACCENT - ÉLÉMENTS NATURELS ===== */
   --accent-rock: #6b7280;      /* Rochers - Gris moyen */
   --accent-water: #06b6d4;     /* Eau - Cyan */
   --accent-trees: #10b981;     /* Arbres - Vert émeraude */
@@ -35,7 +35,7 @@
   --accent-bushes: #059669;    /* Buissons - Vert teal */
   --accent-mushrooms: #ef4444; /* Champignons - Rouge */
 
-  /* Couleurs neutres */
+  /* ===== COULEURS NEUTRES ===== */
   --neutral-50: #07101a;
   --neutral-100: #f1f5f9;
   --neutral-200: #0f4d9f;
@@ -47,7 +47,7 @@
   --neutral-800: #1e293b;
   --neutral-900: #0f172a;
 
-  /* Couleurs de statut */
+  /* ===== COULEURS DE STATUT ===== */
   --success-50: #f0fdf4;
   --success-500: #22c55e;
   --success-600: #16a34a;
@@ -60,38 +60,73 @@
   --error-500: #ef4444;
   --error-600: #dc2626;
 
-  /* Couleurs de fond */
+  /* ===== COULEURS DE FOND ===== */
   --bg-primary: #ffffff;
   --bg-secondary: #f8fafc;
   --bg-tertiary: #f1f5f9;
   --bg-overlay: rgba(255, 255, 255, 0.98);
   --bg-backdrop: rgba(0, 0, 0, 0.03);
 
-  /* Couleurs de texte */
+  /* ===== COULEURS DE TEXTE ===== */
   --text-primary: #1e293b;
   --text-secondary: #475569;
   --text-tertiary: #64748b;
   --text-inverse: #ffffff;
 
-  /* Couleurs de bordure */
+  /* ===== COULEURS DE BORDURE ===== */
   --border-light: #0c64d6;
   --border-medium: #0669e2;
   --border-dark: #94a3b8;
 
-  /* Couleurs d'ombre */
+  /* ===== COULEURS D'OMBRE ===== */
   --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.15);
   --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.15);
   --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.15);
 
-  /* Couleurs de gradient */
+  /* ===== COULEURS DE GRADIENT ===== */
   --gradient-primary: linear-gradient(135deg, var(--primary-500), var(--primary-700));
   --gradient-nature: linear-gradient(135deg, var(--nature-green-500), var(--nature-green-700));
   --gradient-warm: linear-gradient(135deg, #ea580c, #db2777);
   --gradient-cool: linear-gradient(135deg, #0ea5e9, #7c3aed);
+
+  /* ===== ESPACEMENT ===== */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  --spacing-3xl: 4rem;
+
+  /* ===== TYPOGRAPHIE ===== */
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+
+  /* ===== BORDER RADIUS ===== */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-full: 9999px;
+
+  /* ===== Z-INDEX ===== */
+  --z-dropdown: 1000;
+  --z-sticky: 1020;
+  --z-fixed: 1030;
+  --z-modal-backdrop: 1040;
+  --z-modal: 1050;
+  --z-popover: 1060;
+  --z-tooltip: 1070;
+  --z-toast: 1080;
 }
 
-/* Classes utilitaires pour les couleurs */
+/* ===== CLASSES UTILITAIRES POUR LES COULEURS ===== */
 .bg-primary { background-color: var(--primary-500); }
 .bg-nature { background-color: var(--nature-green-500); }
 .bg-neutral { background-color: var(--neutral-100); }
@@ -103,7 +138,7 @@
 .border-light { border-color: var(--border-light); }
 .border-medium { border-color: var(--border-medium); }
 
-/* Classes pour les éléments naturels */
+/* ===== CLASSES POUR LES ÉLÉMENTS NATURELS ===== */
 .bg-rock { background-color: var(--accent-rock); }
 .bg-water { background-color: var(--accent-water); }
 .bg-trees { background-color: var(--accent-trees); }
@@ -112,3 +147,193 @@
 .bg-sand { background-color: var(--accent-sand); }
 .bg-bushes { background-color: var(--accent-bushes); }
 .bg-mushrooms { background-color: var(--accent-mushrooms); }
+
+/* ===== CLASSES PIXEL SPÉCIFIQUES ===== */
+.pixel {
+  position: relative;
+  border: 1px solid var(--border-light);
+  transition: all 0.2s ease-in-out;
+}
+
+.pixel:hover {
+  transform: scale(1.05);
+  z-index: 1;
+}
+
+.pixel-selected {
+  border-color: var(--primary-500);
+  box-shadow: 0 0 0 2px rgba(14, 165, 233, 0.3);
+  animation: pixel-glow 1.5s ease-in-out infinite;
+}
+
+.pixel-empty { background: var(--bg-tertiary); }
+.pixel-water { background: var(--accent-water); }
+.pixel-trees { background: var(--accent-trees); }
+.pixel-flowers { background: var(--accent-flowers); }
+.pixel-rocks { background: var(--accent-rock); }
+.pixel-grass { background: var(--accent-grass); }
+.pixel-sand { background: var(--accent-sand); }
+.pixel-bushes { background: var(--accent-bushes); }
+.pixel-mushrooms { background: var(--accent-mushrooms); }
+
+/* ===== CLASSES DE SÉLECTION ÉLÉGANTES ===== */
+.pixel-selection {
+  position: absolute;
+  border: 2px solid var(--primary-500);
+  border-radius: var(--radius-md);
+  box-shadow: 0 0 8px rgba(14, 165, 233, 0.3);
+  pointer-events: none;
+  z-index: 10;
+}
+
+.pixel-selection-hover {
+  border-color: var(--primary-400);
+  box-shadow: 0 0 12px rgba(14, 165, 233, 0.4);
+  transform: scale(1.03);
+}
+
+.pixel-selection-active {
+  border-color: var(--primary-600);
+  box-shadow: 0 0 16px rgba(14, 165, 233, 0.5);
+  transform: scale(1.08);
+}
+
+/* ===== INDICATEUR DE PIXEL ===== */
+.pixel-indicator {
+  position: absolute;
+  background: var(--bg-overlay);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-sm) var(--spacing-md);
+  box-shadow: var(--shadow-md);
+  backdrop-filter: blur(8px);
+  z-index: 20;
+  font-family: 'Inter', sans-serif;
+  font-size: var(--font-size-xs);
+  color: var(--text-primary);
+}
+
+.pixel-indicator-coordinates {
+  font-weight: 600;
+  font-size: var(--font-size-sm);
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.pixel-indicator-type {
+  font-size: var(--font-size-xs);
+  color: var(--text-secondary);
+  opacity: 0.8;
+}
+
+/* ===== ANIMATIONS PIXEL ===== */
+@keyframes pixel-glow {
+  0%, 100% { 
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.3); 
+  }
+  50% { 
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.6); 
+  }
+}
+
+@keyframes pixel-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes pixel-sparkle {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1) rotate(180deg);
+  }
+}
+
+/* ===== ANIMATIONS NATURE ===== */
+@keyframes water-flow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes tree-sway {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(2deg); }
+  75% { transform: rotate(-2deg); }
+}
+
+@keyframes flower-bloom {
+  0% {
+    transform: scale(0) rotate(0deg);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2) rotate(180deg);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1) rotate(360deg);
+    opacity: 1;
+  }
+}
+
+@keyframes grass-wave {
+  0%, 100% { transform: skewX(0deg); }
+  25% { transform: skewX(5deg); }
+  75% { transform: skewX(-5deg); }
+}
+
+/* ===== CLASSES D'ANIMATION ===== */
+.animate-pixel-glow {
+  animation: pixel-glow 1.5s ease-in-out infinite;
+}
+
+.animate-pixel-pulse {
+  animation: pixel-pulse 0.6s ease-in-out;
+}
+
+.animate-pixel-sparkle {
+  animation: pixel-sparkle 1s ease-in-out;
+}
+
+.animate-water-flow {
+  background: linear-gradient(90deg, var(--accent-water), #0891b2, var(--accent-water));
+  background-size: 200% 100%;
+  animation: water-flow 3s ease-in-out infinite;
+}
+
+.animate-tree-sway {
+  animation: tree-sway 4s ease-in-out infinite;
+}
+
+.animate-flower-bloom {
+  animation: flower-bloom 1.5s ease-out;
+}
+
+.animate-grass-wave {
+  animation: grass-wave 3s ease-in-out infinite;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

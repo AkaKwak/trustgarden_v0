@@ -5,7 +5,6 @@ import { Pixel } from './Pixel'
 import { PixelSelection } from './PixelSelection'
 import { PixelIndicator } from './PixelIndicator'
 import { GRID_CONFIG } from './constants'
-import { LAYOUT_CONFIG } from '../../config/layout'
 
 interface KonvaGridProps {
   gridData: Record<string, any>
@@ -39,6 +38,10 @@ export function KonvaGrid({
   const selectedPixelData = selectedPixel 
     ? gridData[`${selectedPixel.x}-${selectedPixel.y}`] || { dominantType: PixelType.EMPTY }
     : null
+
+  // Vérifier si l'indicateur doit être affiché
+  const shouldShowIndicator = selectedPixel && selectedPixelData && 
+    selectedPixelData.dominantType !== undefined
 
   return (
     <Stage
@@ -95,13 +98,13 @@ export function KonvaGrid({
             />
           )}
           
-          {/* Indicateur de position */}
-          {selectedPixel && selectedPixelData && (
+          {/* Indicateur de position - seulement si on a des données valides */}
+          {shouldShowIndicator && (
             <PixelIndicator
-              x={selectedPixel.x}
-              y={selectedPixel.y}
+              x={selectedPixel!.x}
+              y={selectedPixel!.y}
               size={basePixelSize}
-              pixelType={getPixelLabel(selectedPixelData.dominantType)}
+              pixelType={getPixelLabel(selectedPixelData!.dominantType)}
               isVisible={true}
             />
           )}

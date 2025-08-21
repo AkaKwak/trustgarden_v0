@@ -1,14 +1,18 @@
-// Export centralisé de tous les hooks
+// ===== EXPORTS DES HOOKS =====
 
-export { useSignalGarden } from './useSignalGarden'
-export { useContracts } from './useContracts'
+// Hooks principaux
 export { useGrid } from './useGrid'
-export { useGridSize } from './useGridSize'
-// Hooks pour la grille
-export { useKonvaGrid } from './useKonvaGrid'
-export { useGridZoom } from './useGridZoom'
-export { useStageSize } from './useStageSize'
-export { useResponsiveStage } from './useResponsiveStage'
-export { useSignalGardenState } from './useSignalGardenState'
+export { useGridState } from './useGridState'
+export { useGridStats } from './useGridStats'
+
+// Hooks existants
 export { useGridInteractions } from './useGridInteractions'
+export { useSignalGardenState } from './useSignalGardenState'
+export { useResponsiveStage } from './useResponsiveStage'
+export { useGridZoom } from './useGridZoom'
+export { useKonvaGrid } from './useKonvaGrid'
+export { useStageSize } from './useStageSize'
+export { useGridSize } from './useGridSize'
+export { useContracts } from './useContracts'
+export { useSignalGarden } from './useSignalGarden'
 export { useToast } from './use-toast'

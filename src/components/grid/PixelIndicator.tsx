@@ -1,5 +1,8 @@
-import { Text, Group } from 'react-konva'
+// ===== INDICATEUR DE PIXEL ÉLÉGANT =====
+
+import { Group, Rect, Text } from 'react-konva'
 import { SELECTION_CONFIG } from './selectionConfig'
+import { getPixelEmoji } from '../../utils/pixelUtils'
 
 interface PixelIndicatorProps {
   x: number
@@ -18,66 +21,50 @@ export function PixelIndicator({
 }: PixelIndicatorProps) {
   if (!isVisible) return null
 
-  const indicatorX = x * size + size / 2 + SELECTION_CONFIG.indicator.offset.x
+  // S'assurer que pixelType n'est pas vide
+  const displayType = pixelType || 'Vide'
+  const emoji = getPixelEmoji(pixelType as any) || '⚪'
+
+  const indicatorX = x * size + SELECTION_CONFIG.indicator.offset.x
   const indicatorY = y * size + SELECTION_CONFIG.indicator.offset.y
 
   return (
     <Group>
-      {/* Fond de l'indicateur */}
-      <Text
+      {/* Fond avec effet de flou */}
+      <Rect
         x={indicatorX}
         y={indicatorY}
         width={SELECTION_CONFIG.indicator.size.width}
         height={SELECTION_CONFIG.indicator.size.height}
         fill={SELECTION_CONFIG.colors.background}
-        fontSize={SELECTION_CONFIG.indicator.fontSize.coordinates}
-        fontFamily="Inter, sans-serif"
-        align="center"
-        verticalAlign="middle"
-        text={`${x}, ${y}`}
-        padding={5}
-        cornerRadius={4}
-        fillLinearGradientStartPoint={{ x: 0, y: 0 }}
-        fillLinearGradientEndPoint={{ 
-          x: SELECTION_CONFIG.indicator.size.width, 
-          y: SELECTION_CONFIG.indicator.size.height 
-        }}
-        fillLinearGradientColorStops={[
-          0, SELECTION_CONFIG.colors.background, 
-          1, '#374151'
-        ]}
-        shadowBlur={5}
-        shadowColor="#000"
+        stroke={SELECTION_CONFIG.colors.border}
+        strokeWidth={1}
+        cornerRadius={SELECTION_CONFIG.indicator.borderRadius}
+        shadowBlur={SELECTION_CONFIG.indicator.backdropBlur}
+        shadowColor="rgba(0, 0, 0, 0.1)"
         shadowOpacity={0.3}
-        shadowOffset={{ x: 0, y: 2 }}
       />
       
-      {/* Type du pixel */}
+      {/* Coordonnées */}
       <Text
-        x={indicatorX + 10}
-        y={indicatorY + SELECTION_CONFIG.indicator.size.height + 5}
-        width={SELECTION_CONFIG.indicator.size.width - 20}
-        height={20}
-        fill={SELECTION_CONFIG.colors.text}
+        x={indicatorX + 8}
+        y={indicatorY + 6}
+        text={`${x}, ${y}`}
+        fontSize={SELECTION_CONFIG.indicator.fontSize.coordinates}
+        fontFamily="Inter, sans-serif"
+        fill="#1e293b"
+        fontStyle="bold"
+      />
+      
+      {/* Type de pixel avec emoji */}
+      <Text
+        x={indicatorX + 8}
+        y={indicatorY + 20}
+        text={`${emoji} ${displayType}`}
         fontSize={SELECTION_CONFIG.indicator.fontSize.type}
         fontFamily="Inter, sans-serif"
-        align="center"
-        verticalAlign="middle"
-        text={pixelType}
-        padding={2}
-        cornerRadius={2}
-        fillLinearGradientStartPoint={{ x: 0, y: 0 }}
-        fillLinearGradientEndPoint={{ 
-          x: SELECTION_CONFIG.indicator.size.width - 20, 
-          y: 20 
-        }}
-        fillLinearGradientColorStops={[
-          0, SELECTION_CONFIG.colors.primary, 
-          1, SELECTION_CONFIG.colors.secondary
-        ]}
-        shadowBlur={3}
-        shadowColor="#000"
-        shadowOpacity={0.2}
+        fill="#475569"
+        opacity={0.9}
       />
     </Group>
   )
