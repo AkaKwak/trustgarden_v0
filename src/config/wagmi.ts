@@ -1,49 +1,7 @@
 import { createConfig, http } from 'wagmi'
 import { mainnet, sepolia, polygon, arbitrum, optimism } from 'wagmi/chains'
 import { injected, metaMask, walletConnect } from 'wagmi/connectors'
-
-// Intuition Testnet Configuration
-export const intuitionTestnet = {
-  id: 13579,
-  name: 'Intuition Testnet',
-  network: 'intuition-testnet',
-  nativeCurrency: {
-    decimals: 18,
-    name: 'Testnet TRUST',
-    symbol: 'TTRUST',
-  },
-  rpcUrls: {
-    public: { 
-      http: [
-        import.meta.env.VITE_RPC_URL || 'https://testnet.rpc.intuition.systems'
-      ] 
-    },
-    default: { 
-      http: [
-        import.meta.env.VITE_RPC_URL || 'https://testnet.rpc.intuition.systems'
-      ] 
-    },
-  },
-  blockExplorers: {
-    default: { 
-      name: 'IntuitionScan (Testnet)', 
-      url: 'https://testnet.explorer.intuition.systems/' 
-    },
-  },
-  contracts: {
-    multicall3: {
-      address: '0xca11bde05977b3631167028862be2a173976ca11',
-      blockCreated: 1,
-    },
-    // Adresses des contrats (à mettre à jour après déploiement)
-    trustToken: {
-      address: '0x0000000000000000000000000000000000000000',
-    },
-    pixelGarden: {
-      address: '0x0000000000000000000000000000000000000000',
-    },
-  },
-} as const
+import { intuitionTestnet } from './intuition'
 
 // Configuration pour l'application
 export const APP_CONFIG = {
@@ -51,10 +9,10 @@ export const APP_CONFIG = {
   RPC_URL: 'https://testnet.rpc.intuition.systems',
   EXPLORER_URL: 'https://testnet.explorer.intuition.systems/',
   TOKEN_SYMBOL: 'TTRUST',
-  GRID_SIZE: 32,
+  GRID_SIZE: 64,
   contracts: {
-    trustToken: '0x0000000000000000000000000000000000000000',
-    pixelGarden: '0x0000000000000000000000000000000000000000',
+    trustToken: import.meta.env.VITE_TRUST_TOKEN_ADDRESS || '0x0000000000000000000000000000000000000000',
+    pixelGarden: import.meta.env.VITE_PIXEL_GARDEN_ADDRESS || '0x0000000000000000000000000000000000000000',
   },
 }
 

@@ -16,12 +16,8 @@ async function main() {
     console.log("  Network:", await ethers.provider.getNetwork());
     
     // Check environment variables
-    const rpcUrl = process.env.RPC_URL;
-    const chainId = process.env.CHAIN_ID;
-    
-    if (!rpcUrl || !chainId) {
-        throw new Error("Missing RPC_URL or CHAIN_ID in .env file");
-    }
+    const rpcUrl = process.env.RPC_URL || "https://testnet.rpc.intuition.systems";
+    const chainId = process.env.CHAIN_ID || "13579";
     
     console.log("  RPC URL:", rpcUrl);
     console.log("  Chain ID:", chainId);
@@ -96,19 +92,31 @@ async function main() {
     console.log("\n🧪 Testing basic functionality...");
     
     // Test getPixel
-    const [currentState, currentStake] = await pixelGarden.getPixel(0, 0);
-    console.log("✅ getPixel(0,0) works:", { currentState, currentStake: ethers.formatEther(currentStake) });
+    const pixelData = await pixelGarden.getPixel(0, 0);
+    console.log("✅ getPixel(0,0) works:", {
+        pixelType: pixelData[0],
+        signalStake: ethers.formatEther(pixelData[1]),
+        atomStake: ethers.formatEther(pixelData[2]),
+        tripleStake: ethers.formatEther(pixelData[3]),
+        totalStake: ethers.formatEther(pixelData[4]),
+        lastUpdate: pixelData[5]
+    });
     
-    // Test getAllowedStates
-    const allowedStates = await pixelGarden.getAllowedStates();
-    console.log("✅ getAllowedStates works:", allowedStates.length, "states");
-    
-    // Test stateKey
-    const testStateKey = await pixelGarden.stateKey("flower:red");
-    console.log("✅ stateKey('flower:red') works:", testStateKey);
+    // Test getGridStats
+    const gridStats = await pixelGarden.getGridStats();
+    console.log("✅ getGridStats works:", {
+        totalPixels: gridStats[0],
+        signalPixels: gridStats[1],
+        atomPixels: gridStats[2],
+        triplePixels: gridStats[3],
+        totalStaked: ethers.formatEther(gridStats[4]),
+        signalStaked: ethers.formatEther(gridStats[5]),
+        atomStaked: ethers.formatEther(gridStats[6]),
+        tripleStaked: ethers.formatEther(gridStats[7])
+    });
     
     console.log("\n🎉 Deployment completed successfully!");
-    console.log("🌐 View on explorer: https://explorer.intuition-testnet.gelato.digital/address/" + pixelGardenAddress);
+    console.log("🌐 View on explorer: https://testnet.explorer.intuition.systems/address/" + pixelGardenAddress);
 }
 
 main()

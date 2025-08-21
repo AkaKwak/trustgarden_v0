@@ -1,43 +1,65 @@
 # 🌱 Signal Garden
 
 **Jardin Collaboratif sur Intuition Network**  
-*Token-curated landscape où chaque pixel devient un élément de jardin*
+*Token-curated landscape où chaque pixel devient un élément de connaissance*
 
-Un jardin collaboratif où les utilisateurs stakent des tokens TTRUST pour créer des éléments de jardin visuels sur une grille 64x64 partagée. Chaque pixel peut devenir de l'eau, des arbres, des fleurs, des rochers, et plus encore, créant un paysage dynamique et communautaire.
+Un jardin collaboratif où les utilisateurs stakent des tokens TTRUST pour créer des éléments visuels sur une grille 64x64 partagée, générant automatiquement des connaissances structurées selon les concepts d'Intuition (Signals, Atoms, Triples).
 
 ## 🎯 Vision
 
-Signal Garden est un jardin collaboratif qui transforme le concept de token-curated knowledge en une expérience visuelle intuitive. Les utilisateurs stakent des tokens TTRUST pour créer des éléments de jardin concrets - eau, arbres, fleurs, rochers - créant un paysage dynamique où la valeur stakée se reflète dans la beauté du jardin.
+Signal Garden transforme le concept de token-curated knowledge en une expérience visuelle intuitive. Les utilisateurs stakent des tokens TTRUST pour créer des éléments concrets qui génèrent automatiquement des connaissances structurées, créant un paysage dynamique où la valeur stakée se reflète dans la richesse des connaissances.
 
-## 🚀 Features
+## 🚀 Fonctionnalités
 
-- **64x64 Jardin Grid**: Chaque pixel peut devenir un élément de jardin
-- **8 Éléments Naturels**: Eau, Arbres, Fleurs, Rochers, Herbe, Sable, Buissons, Champignons
-- **Staking Compétitif**: Plus de stake = élément plus dominant
-- **Mise à jour Temps Réel**: Événements blockchain en direct
-- **Interface Moderne**: Design glassmorphism responsive
-- **Intégration Wallet**: Support MetaMask et WalletConnect
-- **Couleurs Intuitives**: Bleu=Eau, Vert=Arbres, Blanc=Fleurs, Marron=Rochers
+### 🎮 Expérience Utilisateur
+- **Grille Interactive 64x64** : Navigation fluide avec zoom et pan
+- **4 Types de Pixels** : EMPTY, SIGNAL, ATOM, TRIPLE
+- **Staking Compétitif** : Plus de stake = élément plus dominant
+- **Mise à jour Temps Réel** : Événements blockchain en direct
+- **Interface Moderne** : Design glassmorphism responsive
 
-## 🛠 Tech Stack
+### 🔗 Intégration Blockchain
+- **Support Wallet** : MetaMask et WalletConnect
+- **Testnet Intuition** : Chain ID 13579
+- **Token TTRUST** : ERC20 sur Intuition testnet
+- **Smart Contracts** : PixelGarden.sol + TrustMock.sol
 
-- **Smart Contracts**: Solidity 0.8.24, OpenZeppelin
-- **Frontend**: React 18, TypeScript, Vite
-- **Web3**: Wagmi v2, Viem
-- **UI**: TailwindCSS, Radix UI
-- **Blockchain**: Intuition EVM-compatible testnet (Chain ID: 13579)
-- **Token**: TTRUST (ERC20) sur Intuition testnet
+### 🎨 Interface Utilisateur
+- **Sélection Visuelle** : Bordure orange avec animations
+- **Contrôles Intuitifs** : Zoom, pan, sélection de pixels
+- **Feedback Immédiat** : Notifications et états de chargement
+- **Design Responsive** : Optimisé desktop et mobile
 
-## 📋 Prerequisites
+## 🛠 Stack Technique
 
-- Node.js 18+ 
-- npm or yarn
-- MetaMask or compatible wallet
-- Intuition testnet configured in wallet
+### Smart Contracts
+- **Solidity 0.8.24** avec OpenZeppelin
+- **PixelGarden.sol** : Contrat principal (64x64 grid)
+- **TrustMock.sol** : Token ERC20 de test
+- **Hardhat** : Développement et déploiement
 
-## 🔧 Quick Start
+### Frontend
+- **React 18** + **TypeScript**
+- **Vite** : Build tool et dev server
+- **Wagmi v2** + **Viem** : Web3 integration
+- **React Konva** : Canvas interactif
+- **TailwindCSS** + **Radix UI** : Design system
 
-### 1. Clone & Install
+### Configuration
+- **Intuition Testnet** : Chain ID 13579
+- **RPC** : https://testnet.rpc.intuition.systems
+- **Explorer** : https://testnet.explorer.intuition.systems/
+
+## 📋 Prérequis
+
+- **Node.js 18+**
+- **npm** ou **yarn**
+- **MetaMask** ou wallet compatible
+- **Clé privée** pour le déploiement
+
+## 🔧 Installation & Configuration
+
+### 1. Clone & Installation
 
 ```bash
 git clone https://github.com/AkaKwak/trustgarden_v0.git
@@ -45,171 +67,264 @@ cd trustgarden_v0
 npm install
 ```
 
-### 2. Environment Setup
+### 2. Configuration Environnement
 
 ```bash
+# Copier le template d'environnement
 cp env.example .env
+
+# Éditer avec vos paramètres
+nano .env
 ```
 
-Edit `.env` with your configuration:
+**Variables requises** :
 ```env
-# Intuition Testnet Configuration
-RPC_URL=https://api.intuition-testnet.gelato.digital
-CHAIN_ID=88
+# Configuration Intuition Testnet
+RPC_URL=https://testnet.rpc.intuition.systems
+CHAIN_ID=13579
 
-# Contract Addresses (will be filled after deployment)
+# Clé privée pour déploiement
+PRIVATE_KEY=your_private_key_here
+
+# Adresses des contrats (remplies après déploiement)
 PIXEL_GARDEN_ADDRESS=
 TRUST_TOKEN_ADDRESS=
 
-# Deployment Account
-PRIVATE_KEY=your_private_key_here
-
-# Frontend Configuration
-VITE_RPC_URL=https://api.intuition-testnet.gelato.digital
-VITE_CHAIN_ID=88
+# Configuration frontend
+VITE_RPC_URL=https://testnet.rpc.intuition.systems
+VITE_CHAIN_ID=13579
 VITE_PIXEL_GARDEN_ADDRESS=
 VITE_TRUST_TOKEN_ADDRESS=
 ```
 
-### 3. Deploy Smart Contracts
+### 3. Déploiement des Contrats
 
 ```bash
-# Compile contracts
-npx hardhat compile
+# Compiler les contrats
+npm run hardhat:compile
 
-# Deploy to Intuition testnet
-npx hardhat run scripts/deploy-intuition.ts --network INTUITION_TESTNET
+# Déployer sur Intuition testnet
+npm run intuition:deploy
 ```
 
-### 4. Update Environment Variables
+### 4. Configuration Frontend
 
-After deployment, update your `.env` file with the contract addresses from the deployment output.
+Après déploiement, mettre à jour `.env` avec les adresses générées :
+```env
+PIXEL_GARDEN_ADDRESS=0x... # Adresse PixelGarden
+TRUST_TOKEN_ADDRESS=0x...  # Adresse TrustMock
+VITE_PIXEL_GARDEN_ADDRESS=0x... # Même adresse
+VITE_TRUST_TOKEN_ADDRESS=0x...  # Même adresse
+```
 
-### 5. Start Frontend
+### 5. Démarrage Application
 
 ```bash
+# Démarrer le serveur de développement
 npm run dev
 ```
 
-Visit `http://localhost:5173` to interact with TrustGarden!
+Visiter `http://localhost:5173` pour interagir avec Signal Garden !
 
 ## 🎮 Comment Jouer
 
-1. **Connecter Wallet**: Cliquer "Connect Wallet" et approuver la connexion
-2. **Obtenir TTRUST**: Les tokens sont automatiquement mintés sur le testnet
-3. **Sélectionner Pixel**: Cliquer sur n'importe quel pixel de la grille 64x64
-4. **Choisir Élément**: Sélectionner parmi 8 éléments de jardin (eau, arbres, fleurs, etc.)
-5. **Stake TRUST**: Enter the amount of TRUST tokens to stake
-6. **Approve & Set**: Approve the token transfer and set the pixel
-7. **Compete**: Higher stakes win! Watch the grid evolve in real-time
+### 1. Connexion Wallet
+- Cliquer "Connect Wallet" et approuver la connexion
+- S'assurer que MetaMask est configuré pour le testnet Intuition
 
-## 🏗 Smart Contract Architecture
+### 2. Obtenir des Tokens
+- Les tokens TTRUST sont automatiquement mintés lors du déploiement
+- Vérifier le solde dans le wallet
 
-### PixelGarden.sol
+### 3. Interagir avec la Grille
+- **Sélectionner un pixel** : Cliquer sur n'importe quel pixel de la grille 64x64
+- **Choisir un type** : SIGNAL (rouge), ATOM (jaune), TRIPLE (vert)
+- **Staker des tokens** : Entrer le montant de TTRUST à staker
+- **Confirmer** : Approuver la transaction et voir la mise à jour
 
-- **Grid**: 64x64 fixed-size pixel grid
-- **States**: 14 canonical states with deterministic hashing
-- **Staking**: Winner-takes-all by highest stake
-- **Events**: PixelChanged events for real-time updates
+### 4. Compétition
+- Plus de stake = élément plus dominant
+- Observer la grille évoluer en temps réel
+- Vérifier les transactions sur l'explorateur
 
-### Key Functions
-
-- `setPixel(x, y, state, amount)`: Stake TRUST tokens for a pixel state
-- `getPixel(x, y)`: Get current state and stake for a pixel
-- `getTopStates(x, y, k)`: Get top k states by stake for a pixel
-- `getAllowedStates()`: Get list of all valid states
-
-## 🎨 UI Components
-
-- **Pixel Grid**: Interactive 64x64 grid with zoom controls
-- **State Palette**: Radio buttons for selecting pixel states
-- **Wallet Integration**: Connect/disconnect with transaction status
-- **Real-time Updates**: Live blockchain event listening
-- **Responsive Design**: Works on desktop and mobile
-
-## 🔗 Blockchain Integration
-
-- **Network**: Intuition EVM-compatible testnet (Chain ID: 88)
-- **RPC**: https://api.intuition-testnet.gelato.digital
-- **Explorer**: https://explorer.intuition-testnet.gelato.digital
-- **Token**: TRUST (ERC20) - real token or TrustMock for development
-
-## 🧪 Testing
-
-### Local Testing
-
-```bash
-# Start local hardhat node
-npx hardhat node
-
-# Deploy contracts locally
-npx hardhat run scripts/deploy-intuition.ts --network localhost
-
-# Run tests
-npx hardhat test
-```
-
-### Hardhat Tasks
-
-```bash
-# Set a pixel
-npx hardhat set:pixel --contract 0x... --x 1 --y 1 --state "flower:red" --amount 1
-
-# Get pixel info
-npx hardhat pixel:get --contract 0x... --x 1 --y 1
-
-# Approve TRUST tokens
-npx hardhat approve:trust --contract 0x... --amount 100
-```
-
-## 🚀 Deployment
+## 🏗 Architecture
 
 ### Smart Contracts
 
-```bash
-# Deploy to Intuition testnet
-npx hardhat run scripts/deploy-intuition.ts --network INTUITION_TESTNET
+#### PixelGarden.sol
+```solidity
+// Types de pixels alignés avec Intuition
+enum PixelType {
+    EMPTY,    // 0 - Blanc - Pixel vide
+    SIGNAL,   // 1 - Rouge - Assertion simple
+    ATOM,     // 2 - Jaune - Donnée structurée
+    TRIPLE    // 3 - Vert - Relation complexe
+}
 
-# Verify contracts (if supported)
-npx hardhat verify --network INTUITION_TESTNET 0xCONTRACT_ADDRESS 64 64 0xTOKEN_ADDRESS
+// Fonctions principales
+function setPixel(uint32 x, uint32 y, uint8 pixelType, uint256 amount)
+function getPixel(uint32 x, uint32 y) returns (pixelType, stakes...)
+function getGridStats() returns (statistics...)
+```
+
+#### TrustMock.sol
+```solidity
+// Token ERC20 de test
+contract TrustMock is ERC20 {
+    function mint(address to, uint256 amount) external
+}
 ```
 
 ### Frontend
 
+#### Structure des Composants
+```
+src/
+├── components/
+│   ├── containers/
+│   │   └── SignalGardenContainer.tsx    # Logique métier
+│   ├── layouts/
+│   │   └── SignalGardenLayout.tsx       # Structure UI
+│   ├── features/
+│   │   ├── PixelStatusDisplay.tsx       # Affichage statut
+│   │   ├── PixelTypeSelector.tsx        # Sélecteur type
+│   │   ├── StakingForm.tsx              # Formulaire staking
+│   │   └── TrustBalanceDisplay.tsx      # Affichage balance
+│   ├── grid/
+│   │   ├── KonvaGrid.tsx                # Grille interactive
+│   │   ├── PixelSelection.tsx           # Sélection pixels
+│   │   └── GridInteractions.tsx         # Interactions
+│   └── ui/
+│       ├── AppHeader.tsx                # En-tête
+│       ├── StatsCard.tsx                # Cartes stats
+│       └── ZoomControls.tsx             # Contrôles zoom
+├── hooks/
+│   ├── useSignalGarden.ts               # Hook principal
+│   ├── useKonvaGrid.ts                  # Logique grille
+│   └── useGridZoom.ts                   # Gestion zoom
+└── config/
+    ├── intuition.ts                     # Configuration Intuition
+    ├── wagmi.ts                         # Configuration Wagmi
+    └── constants.ts                     # Constantes
+```
+
+#### Hooks Principaux
+- **useSignalGarden** : Logique métier et interactions blockchain
+- **useKonvaGrid** : Gestion de la grille interactive
+- **useGridZoom** : Contrôles de zoom et navigation
+- **useSignalGardenState** : État local de l'interface
+
+## 🧪 Tests & Développement
+
+### Tests Locaux
 ```bash
-# Build for production
+# Démarrer un nœud local
+npm run hardhat:node
+
+# Déployer localement
+npm run hardhat:deploy
+
+# Lancer les tests
+npm run hardhat:test
+```
+
+### Configuration Automatique
+```bash
+# Configuration automatique du testnet
+npm run intuition:setup
+
+# Vérifier la connectivité réseau
+npm run intuition:setup
+```
+
+### Scripts Disponibles
+```bash
+# Développement
+npm run dev                    # Serveur de développement
+npm run build                  # Build de production
+npm run preview                # Prévisualisation build
+
+# Smart Contracts
+npm run hardhat:compile        # Compilation contrats
+npm run hardhat:deploy         # Déploiement local
+npm run intuition:deploy       # Déploiement testnet
+npm run hardhat:test           # Tests contrats
+
+# Configuration
+npm run intuition:setup        # Configuration automatique
+```
+
+## 🔍 Vérification & Déploiement
+
+### Vérification des Contrats
+```bash
+# Vérifier sur l'explorateur Intuition
+npx hardhat verify --network intuition 0xCONTRACT_ADDRESS 64 64 0xTOKEN_ADDRESS
+```
+
+### Déploiement Production
+```bash
+# Build de production
 npm run build
 
-# Deploy to Vercel/Netlify
+# Déployer sur Vercel/Netlify
 npm run deploy
 ```
 
-## 📊 Deliverables
+## 🌐 URLs Importantes
 
-- ✅ **Smart Contract**: PixelGarden.sol deployed on Intuition testnet
-- ✅ **Frontend**: React app with modern UI and wallet integration
-- ✅ **GitHub Repo**: Complete source code with documentation
-- ✅ **Documentation**: This README with setup instructions
+- **Application** : http://localhost:5173
+- **Testnet RPC** : https://testnet.rpc.intuition.systems
+- **Explorer** : https://testnet.explorer.intuition.systems/
+- **Documentation Intuition** : https://docs.intuition.systems
 
-## 🎯 Hackathon Alignment
+## 🐛 Dépannage
 
-- **Token-Curated Knowledge**: Each pixel is an assertion curated by TRUST staking
-- **Minimal & Fun**: Simple rules, engaging gameplay even with one user
-- **Fast Shipping**: MVP delivered in hours, not weeks
-- **Intuition Native**: Built specifically for Intuition's testnet and token model
+### Problèmes de Connectivité
+```bash
+# Vérifier la configuration réseau
+npm run intuition:setup
 
-## 🤝 Contributing
+# Tester la connectivité RPC
+curl -X POST https://testnet.rpc.intuition.systems \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}'
+```
 
-This is a hackathon submission. For questions or issues:
+### Problèmes de Déploiement
+1. Vérifier la clé privée dans `.env`
+2. S'assurer d'avoir des fonds sur le testnet
+3. Vérifier la connectivité RPC
 
-1. Check the [Issues](../../issues) page
-2. Review the [Pull Requests](../../pulls)
-3. Contact the team
+### Problèmes Frontend
+1. Vérifier les variables d'environnement VITE_*
+2. S'assurer que MetaMask est configuré pour Intuition
+3. Vérifier la console pour les erreurs
 
-## 📄 License
+## 📊 Métriques & Statistiques
 
-MIT License - see [LICENSE](LICENSE) for details
+### Grille
+- **Taille** : 64x64 pixels (4096 pixels total)
+- **Types** : 4 types (EMPTY, SIGNAL, ATOM, TRIPLE)
+- **Staking** : Winner-takes-all par pixel
+
+### Performance
+- **Rendu** : React Konva pour performance optimale
+- **Zoom** : 1x à 10x avec calculs dynamiques
+- **Responsive** : Optimisé pour 1432x1146 et mobile
+
+## 🤝 Contribution
+
+Ce projet est une soumission hackathon. Pour questions ou problèmes :
+
+1. Vérifier les [Issues](../../issues)
+2. Consulter les [Pull Requests](../../pulls)
+3. Contacter l'équipe
+
+## 📄 Licence
+
+MIT License - voir [LICENSE](LICENSE) pour détails
 
 ---
 
-**Built with ❤️ for Intuition Network Hackathon 2025**
+**🌱 Construit avec ❤️ pour l'écosystème Intuition Network**

@@ -9,14 +9,21 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "hardhat:compile": "hardhat compile",
-    "hardhat:deploy": "hardhat run scripts/deploy.ts --network localhost"
+    "hardhat:deploy": "hardhat run scripts/deploy.ts --network localhost",
+    "hardhat:deploy:intuition": "hardhat run scripts/deploy-intuition.ts --network intuition",
+    "hardhat:setup": "hardhat run scripts/setup-intuition.cjs --network intuition",
+    "hardhat:node": "hardhat node",
+    "hardhat:test": "hardhat test",
+    "intuition:setup": "npm run hardhat:setup",
+    "intuition:deploy": "npm run hardhat:deploy:intuition"
   },
   "keywords": [
     "web3",
     "dapp",
     "pixel",
     "staking",
-    "trust"
+    "trust",
+    "intuition"
   ],
   "author": "",
   "license": "ISC",

@@ -31,8 +31,30 @@ export const ZOOM_LEVELS = {
 
 export const TOKEN_DECIMALS = 18
 
+// Types de pixels alignés avec le smart contract PixelGarden
+export const PIXEL_TYPES = {
+  EMPTY: 0,    // Blanc - Pixel vide
+  SIGNAL: 1,   // Rouge - Assertion simple
+  ATOM: 2,     // Jaune - Donnée structurée
+  TRIPLE: 3,   // Vert - Relation complexe
+} as const
+
+export const PIXEL_TYPE_NAMES = {
+  [PIXEL_TYPES.EMPTY]: 'EMPTY',
+  [PIXEL_TYPES.SIGNAL]: 'SIGNAL',
+  [PIXEL_TYPES.ATOM]: 'ATOM',
+  [PIXEL_TYPES.TRIPLE]: 'TRIPLE',
+} as const
+
+export const PIXEL_COLORS = {
+  [PIXEL_TYPES.EMPTY]: '#FFFFFF',   // Blanc
+  [PIXEL_TYPES.SIGNAL]: '#FF0000',  // Rouge
+  [PIXEL_TYPES.ATOM]: '#FFFF00',    // Jaune
+  [PIXEL_TYPES.TRIPLE]: '#00FF00',  // Vert
+} as const
+
 export const DEMO_PIXELS = [
-  { x: 5, y: 5, type: 'ROCKS', amount: '100' },
-  { x: 8, y: 8, type: 'TREES', amount: '150' },
-  { x: 12, y: 12, type: 'WATER', amount: '200' },
+  { x: 5, y: 5, type: PIXEL_TYPES.SIGNAL, amount: '100' },
+  { x: 8, y: 8, type: PIXEL_TYPES.ATOM, amount: '150' },
+  { x: 12, y: 12, type: PIXEL_TYPES.TRIPLE, amount: '200' },
 ] as const

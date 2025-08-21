@@ -2,6 +2,8 @@ const { HardhatUserConfig } = require("hardhat/config");
 require("@nomicfoundation/hardhat-toolbox");
 require("dotenv").config();
 
+const deployerPrivateKey = process.env.PRIVATE_KEY;
+
 const config = {
   solidity: {
     version: "0.8.24",
@@ -12,20 +14,33 @@ const config = {
       },
     },
   },
+  defaultNetwork: "intuition",
   networks: {
-    INTUITION_TESTNET: {
-      url: process.env.RPC_URL || "https://testnet.rpc.intuition.systems",
-      accounts: process.env.PRIVATE_KEY && process.env.PRIVATE_KEY !== "your_private_key_here" 
-        ? [process.env.PRIVATE_KEY] 
-        : [],
+    hardhat: {
+      chainId: 31337,
+    },
+    localhost: {
+      url: "http://127.0.0.1:8545",
+      chainId: 31337,
+    },
+    intuition: {
+      url: "https://testnet.rpc.intuition.systems",
+      accounts: deployerPrivateKey && deployerPrivateKey !== "your_private_key_here" ? [deployerPrivateKey] : [],
       chainId: 13579,
       gasPrice: "auto",
       gas: "auto",
     },
-    // Local development network
-    hardhat: {
-      chainId: 31337,
-    },
+    // Autres réseaux pour référence (seulement si clé privée disponible)
+    ...(deployerPrivateKey && deployerPrivateKey !== "your_private_key_here" ? {
+      sepolia: {
+        url: process.env.SEPOLIA_RPC_URL || "https://rpc.sepolia.org",
+        accounts: [deployerPrivateKey],
+      },
+      celo: {
+        url: "https://alfajores-forno.celo-testnet.org",
+        accounts: [deployerPrivateKey],
+      },
+    } : {}),
   },
   typechain: {
     outDir: "typechain-types",
@@ -33,18 +48,18 @@ const config = {
   },
   etherscan: {
     apiKey: {
-      INTUITION_TESTNET: process.env.ETHERSCAN_API_KEY || "",
+      intuition: process.env.ETHERSCAN_API_KEY || "",
     },
-            customChains: [
-          {
-            network: "INTUITION_TESTNET",
-            chainId: 13579,
-            urls: {
-              apiURL: "https://testnet.explorer.intuition.systems/api",
-              browserURL: "https://testnet.explorer.intuition.systems/",
-            },
-          },
-        ],
+    customChains: [
+      {
+        network: "intuition",
+        chainId: 13579,
+        urls: {
+          apiURL: "https://testnet.explorer.intuition.systems/api",
+          browserURL: "https://testnet.explorer.intuition.systems/",
+        },
+      },
+    ],
   },
 };
 
