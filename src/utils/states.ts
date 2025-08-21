@@ -26,9 +26,9 @@ export type PixelState = typeof ALLOWED_STATES[number];
  * @param stateName The state name to hash
  * @returns The keccak256 hash as bytes32 string
  */
-export function stateKey(stateName: string): string {
-    const { keccak256, toUtf8Bytes } = require("ethers");
-    return keccak256(toUtf8Bytes(stateName));
+export function stateKey(stateName: string): `0x${string}` {
+    const { keccak256, toHex } = require("viem");
+    return keccak256(toHex(stateName));
 }
 
 /**
