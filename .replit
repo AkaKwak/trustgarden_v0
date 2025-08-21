@@ -1,2 +1,41 @@
+modules = ["nodejs-20"]
 [agent]
 expertMode = true
+
+[nix]
+channel = "stable-25_05"
+
+[workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Hardhat Development Server"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "hardhat_setup"
+
+[[workflows.workflow]]
+name = "Hardhat Development Server"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm install && npx hardhat compile && echo \"Hardhat project compiled successfully. You can now run deployment scripts or interact with the contracts using Hardhat tasks.\""
+
+[workflows.workflow.metadata]
+outputType = "console"
+
+[[workflows.workflow]]
+name = "hardhat_setup"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "npm install && npx hardhat compile"
