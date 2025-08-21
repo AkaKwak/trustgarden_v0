@@ -51,7 +51,7 @@ export const APP_CONFIG = {
   RPC_URL: 'https://testnet.rpc.intuition.systems',
   EXPLORER_URL: 'https://testnet.explorer.intuition.systems/',
   TOKEN_SYMBOL: 'TTRUST',
-  GRID_SIZE: 64,
+  GRID_SIZE: 32,
   contracts: {
     trustToken: '0x0000000000000000000000000000000000000000',
     pixelGarden: '0x0000000000000000000000000000000000000000',

@@ -10,7 +10,21 @@ export { RadioGroup, RadioGroupItem } from './radio-group'
 export { Toaster } from './toaster'
 
 // Composants métier
-export { ResponsiveGrid } from './ResponsiveGrid'
 export { GridControls } from './GridControls'
-export { PlantingPanel } from './PlantingPanel'
+export { ZoomControls } from './ZoomControls'
+export { DisplayControls } from './DisplayControls'
+export { AppHeader } from './AppHeader'
+export { StatsCard } from './StatsCard'
 export { StatsCards } from './StatsCards'
+export { Tooltip } from './Tooltip'
+export { AnimatedButton } from './AnimatedButton'
+export { ScrollContainer } from './ScrollContainer'
+
+// Containers
+export * from '../containers'
+
+// Layouts
+export * from '../layouts'
+
+// Features
+export * from '../features'

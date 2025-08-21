@@ -176,6 +176,21 @@ export function useGrid() {
         grass: 0n, sand: 0n, bushes: 0n, mushrooms: 0n,
         total: parseUnits('200', 18), dominantType: PixelType.WATER,
       }
+      demoData['15-15'] = {
+        water: 0n, trees: 0n, flowers: parseUnits('80', 18), rocks: 0n,
+        grass: 0n, sand: 0n, bushes: 0n, mushrooms: 0n,
+        total: parseUnits('80', 18), dominantType: PixelType.FLOWERS,
+      }
+      demoData['20-20'] = {
+        water: 0n, trees: 0n, flowers: 0n, rocks: 0n,
+        grass: parseUnits('120', 18), sand: 0n, bushes: 0n, mushrooms: 0n,
+        total: parseUnits('120', 18), dominantType: PixelType.GRASS,
+      }
+      demoData['25-25'] = {
+        water: 0n, trees: 0n, flowers: 0n, rocks: 0n,
+        grass: 0n, sand: parseUnits('90', 18), bushes: 0n, mushrooms: 0n,
+        total: parseUnits('90', 18), dominantType: PixelType.SAND,
+      }
       
       setGridData(demoData)
     }

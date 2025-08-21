@@ -1,32 +1,32 @@
-import { GridConfig } from './types'
+// Configuration de la grille
+export const GRID_CONFIG = {
+  SIZE: 32,
+  BASE_PIXEL_SIZE: 20, // Plus grand pour mieux remplir l'espace
+  MIN_ZOOM: 10, // 10%
+  MAX_ZOOM: 500, // 500%
+  DEFAULT_ZOOM: 100, // 100%
+} as const
 
-// Configuration par défaut de la grille
-export const DEFAULT_GRID_CONFIG: GridConfig = {
-  size: 32,
-  minPixelSize: 16,
-  maxPixelSize: 48,
-  defaultZoom: 1.33, // Base immuable (niveau 4)
-  zoomStep: 0.2,
-  panSensitivity: 1.5,
-}
+// Couleurs de la grille
+export const GRID_COLORS = {
+  BACKGROUND: '#f8fafc',
+  BORDER: '#e5e7eb',
+  SELECTED: '#3B82F6',
+  EMPTY: '#F8FAFC',
+} as const
 
-// Styles CSS pour la grille
+// Styles de la grille
 export const GRID_STYLES = {
-  container: {
-    base: "w-full h-full flex justify-center items-center overflow-hidden",
-    bubble: "bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 rounded-3xl shadow-2xl border-4 border-white/20 backdrop-blur-sm p-8",
+  CONTAINER: 'w-full h-full flex items-center justify-center bg-gray-50 rounded-lg border-2 border-gray-200',
+  STAGE: {
+    cursor: 'grab',
+    backgroundColor: GRID_COLORS.BACKGROUND,
   },
-  grid: {
-    base: "grid gap-0 bg-white/90 backdrop-blur-sm rounded-2xl shadow-xl border border-white/40",
-    pixel: "transition-all duration-200 ease-out",
-    selected: "ring-4 ring-blue-500 ring-offset-2 shadow-2xl z-20",
-    hover: "hover:scale-105 hover:shadow-lg",
+  STAGE_DRAGGING: {
+    cursor: 'grabbing',
+    backgroundColor: GRID_COLORS.BACKGROUND,
   },
-  pixel: {
-    empty: "bg-transparent border border-gray-200/40",
-    occupied: "shadow-lg border-2 border-white/70",
-  }
-}
+} as const
 
 // Breakpoints pour la responsivité
 export const GRID_BREAKPOINTS = {
@@ -34,15 +34,15 @@ export const GRID_BREAKPOINTS = {
   tablet: 1024,
   desktop: 1280,
   large: 1920,
-}
+} as const
 
 // Calculs de taille adaptatifs
 export const calculatePixelSize = (screenWidth: number, zoom: number = 1): number => {
   const availableWidth = (screenWidth * 2) / 3 - 80 // 2/3 de l'écran moins les marges
-  const baseSize = availableWidth / DEFAULT_GRID_CONFIG.size
+  const baseSize = availableWidth / GRID_CONFIG.SIZE
   const zoomedSize = baseSize * zoom
   return Math.max(
-    DEFAULT_GRID_CONFIG.minPixelSize,
-    Math.min(DEFAULT_GRID_CONFIG.maxPixelSize, zoomedSize)
+    GRID_CONFIG.BASE_PIXEL_SIZE * 0.5, // Min 50% de la taille de base
+    Math.min(GRID_CONFIG.BASE_PIXEL_SIZE * 2, zoomedSize) // Max 200% de la taille de base
   )
 }
