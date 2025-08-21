@@ -1,11 +1,11 @@
-import TrustGardenPixelWar from './components/PixelGarden'
+import SignalGarden from './components/SignalGarden'
 import { Toaster } from './components/ui/toaster'
 import './App.css'
 
 function App() {
   return (
     <>
-      <TrustGardenPixelWar />
+      <SignalGarden />
       <Toaster />
     </>
   )

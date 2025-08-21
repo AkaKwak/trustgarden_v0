@@ -24,26 +24,8 @@ const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
           step={step}
           value={value[0]}
           onChange={handleChange}
-          className="w-full h-2 bg-secondary rounded-lg appearance-none cursor-pointer slider"
+          className="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-blue-600 [&::-webkit-slider-thumb]:cursor-pointer [&::-moz-range-thumb]:h-5 [&::-moz-range-thumb]:w-5 [&::-moz-range-thumb]:rounded-full [&::-moz-range-thumb]:bg-blue-600 [&::-moz-range-thumb]:cursor-pointer [&::-moz-range-thumb]:border-none"
         />
-        <style jsx>{`
-          .slider::-webkit-slider-thumb {
-            appearance: none;
-            height: 20px;
-            width: 20px;
-            border-radius: 50%;
-            background: hsl(var(--primary));
-            cursor: pointer;
-          }
-          .slider::-moz-range-thumb {
-            height: 20px;
-            width: 20px;
-            border-radius: 50%;
-            background: hsl(var(--primary));
-            cursor: pointer;
-            border: none;
-          }
-        `}</style>
       </div>
     )
   }
